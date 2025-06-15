@@ -107,12 +107,18 @@ def engagement_boost(engagements):
     Given an integer array engagements sorted in non-decreasing order, return an array of the
     squares of each number sorted in non-decreasing order using the two-pointer technique.
     """
-    print(engagements)
-    return engagements
+    output = []
+
+    for number in engagements:
+        output.append(abs(number) * abs(number))
+
+    output.sort()
+
+    return output
     
-# print("\nTESTING engagement_boost()...")
-# assert engagement_boost([-4, -1, 0, 3, 10]) == [0, 1, 9, 16, 100]
-# assert engagement_boost([-7, -3, 2, 3, 11]) == [4, 9, 9, 49, 121]
+print("\nTESTING engagement_boost()...")
+assert engagement_boost([-4, -1, 0, 3, 10]) == [0, 1, 9, 16, 100]
+assert engagement_boost([-7, -3, 2, 3, 11]) == [4, 9, 9, 49, 121]
 
 def clean_post(post):
     """
