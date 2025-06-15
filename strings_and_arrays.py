@@ -1,3 +1,4 @@
+# STANDARD SET #####################################################################################################
 def linear_search(lst, target):
     """
     Perform a linear search for the target in the list.

@@ -1,3 +1,4 @@
+# STANDARD SET #####################################################################################################
 def lineup(artists, set_times):
     """
     Create a dictionary mapping artists to their set times.
