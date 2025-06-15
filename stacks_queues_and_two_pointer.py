@@ -15,7 +15,9 @@
 
 from collections import deque
 
-# STANDARD SET #####################################################################################################
+# STANDARD SET ######################################################################################################################
+
+# VERSION Set 1 *********************************************************************************************************************
 def is_valid_post_format(posts):
     """
     You are managing a social media platform and need to ensure that posts are properly formatted. Each post must have balanced and correctly nested tags, such as () for mentions, [] for hashtags, and {} for links. You are given a string representing a post's content, and your task is to determine if the tags in the post are correctly formatted.
@@ -25,27 +27,92 @@ def is_valid_post_format(posts):
     1. Every opening tag has a corresponding closing tag of the same type.
     2. Tags are closed in the correct order.
     """
-    pass
+
+    openBrackets = []
+
+    for bracket in posts:
+        if bracket in ('{', '[', '('):
+            openBrackets.append(bracket)
+        else:
+            match bracket:
+                case '}':
+                    if openBrackets[-1] == '{':
+                        openBrackets.pop()
+                    else:
+                        return False
+                case ']':
+                    if openBrackets[-1] == '[':
+                        openBrackets.pop()
+                    else:
+                        return False
+                case ')':
+                    if openBrackets[-1] == '(':
+                        openBrackets.pop()
+                    else:
+                        return False
+                    
+    return True
+
+print("\nTESTING is_valid_post_format()...")
+assert is_valid_post_format("()") == True
+assert is_valid_post_format("()[]{}") == True
+assert is_valid_post_format("(]") == False
+
 
 def reverse_comments_queue(comments):
     """
     Given a queue of comments represented as a list of strings, reverse the order using a stack.
     """
-    pass
+
+    queue = deque()
+    output = []
+
+    for comment in comments:
+        queue.append(comment)
+
+    while queue:
+        output.append(queue.pop())
+
+    return output
+        
+print("\nTESTING reverse_comments_queue()...")
+assert reverse_comments_queue(["Great post!", "Love it!", "Thanks for sharing."]) == ["Thanks for sharing.", "Love it!", "Great post!"]
+assert reverse_comments_queue(["First!", "Interesting read.", "Well written."]) == ["Well written.", "Interesting read.", "First!"]
+
 
 def is_symmetrical_title(title):
     """
     Determine if a post title is symmetrical, meaning it reads the same forwards and backwards
     when ignoring spaces, punctuation, and case.
     """
-    pass
+    title = title.replace(" ", "").lower()
+    front = 0
+    end = len(title) - 1
+
+    while front < end:
+        if title[front] == title[end]:
+            front += 1
+            end -= 1
+        else:
+            return False
+    
+    return True
+
+print("\nTESTING is_symmetrical_title()...")
+assert is_symmetrical_title("A Santa at NASA") == True
+assert is_symmetrical_title("Social Media") == False
 
 def engagement_boost(engagements):
     """
     Given an integer array engagements sorted in non-decreasing order, return an array of the
     squares of each number sorted in non-decreasing order using the two-pointer technique.
     """
-    pass
+    print(engagements)
+    return engagements
+    
+# print("\nTESTING engagement_boost()...")
+# assert engagement_boost([-4, -1, 0, 3, 10]) == [0, 1, 9, 16, 100]
+# assert engagement_boost([-7, -3, 2, 3, 11]) == [4, 9, 9, 49, 121]
 
 def clean_post(post):
     """
@@ -120,41 +187,28 @@ def sort_performances_by_type(performances):
     """
     pass
 
-# STANDARD SET TESTS
+# def test_standard_set():S
+    # assert clean_post("poOost") == "post"
+    # assert clean_post("abBAcC") == ""
+    # assert clean_post("s") == "s"
 
-def test_standard_set():
-    assert is_valid_post_format("()") == True
-    assert is_valid_post_format("()[]{}") == True
-    assert is_valid_post_format("(]") == False
+    # assert edit_post("Boost your engagement with these tips") == "tsooB ruoy tnemegegna htiw esehT spit"
+    # assert edit_post("Check out my latest vlog") == "kcehC tuo ym tseval golv"
 
-    assert reverse_comments_queue(["Great post!", "Love it!", "Thanks for sharing."]) == ["Thanks for sharing.", "Love it!", "Great post!"]
-    assert reverse_comments_queue(["First!", "Interesting read.", "Well written."]) == ["Well written.", "Interesting read.", "First!"]
-
-    assert is_symmetrical_title("A Santa at NASA") == True
-    assert is_symmetrical_title("Social Media") == False
-
-    assert engagement_boost([-4, -1, 0, 3, 10]) == [0, 1, 9, 16, 100]
-    assert engagement_boost([-7, -3, 2, 3, 11]) == [4, 9, 9, 49, 121]
-
-    assert clean_post("poOost") == "post"
-    assert clean_post("abBAcC") == ""
-    assert clean_post("s") == "s"
-
-    assert edit_post("Boost your engagement with these tips") == "tsooB ruoy tnemegegna htiw esehT spit"
-    assert edit_post("Check out my latest vlog") == "kcehC tuo ym tseval golv"
-
-    assert post_compare("ab#c", "ad#c") == True
-    assert post_compare("ab##", "c#d#") == True
-    assert post_compare("a#c", "b") == False
+    # assert post_compare("ab#c", "ad#c") == True
+    # assert post_compare("ab##", "c#d#") == True
+    # assert post_compare("a#c", "b") == False
 
 
-# VERSION 2 SET ####################################################################################################
+# VERSION Set 2 *********************************************************************************************************************
 def time_required_to_stream(movies, k):
     """
     Return the time taken for the user at position k to finish streaming all their movies.
     Each user takes 1 second per movie and goes to the back of the queue if they have movies left.
     """
     pass
+# assert time_required_to_stream([2, 3, 2], 2) == 6
+# assert time_required_to_stream([5, 1, 1, 1], 0) == 8
 
 def reverse_watchlist(watchlist):
     """
@@ -246,36 +300,32 @@ def is_prefix_of_signal(transmission, searchSignal):
     """
     pass
 
-# VERSION 2 SET TESTS
+# def test_version_2():
 
-def test_version_2():
-    assert time_required_to_stream([2, 3, 2], 2) == 6
-    assert time_required_to_stream([5, 1, 1, 1], 0) == 8
+    # wl = ["Breaking Bad", "Stranger Things", "The Crown", "The Witcher"]
+    # assert reverse_watchlist(wl) == ["The Witcher", "The Crown", "Stranger Things", "Breaking Bad"]
 
-    wl = ["Breaking Bad", "Stranger Things", "The Crown", "The Witcher"]
-    assert reverse_watchlist(wl) == ["The Witcher", "The Crown", "Stranger Things", "Breaking Bad"]
+    # assert remove_duplicate_shows("abbaca") == "ca"
+    # assert remove_duplicate_shows("azxxzy") == "ay"
 
-    assert remove_duplicate_shows("abbaca") == "ca"
-    assert remove_duplicate_shows("azxxzy") == "ay"
+    # assert minimum_average_view_count([7, 8, 3, 4, 15, 13, 4, 1]) == 5.5
+    # assert minimum_average_view_count([1, 9, 8, 3, 10, 5]) == 5.5
+    # assert minimum_average_view_count([1, 2, 3, 7, 8, 9]) == 5.0
 
-    assert minimum_average_view_count([7, 8, 3, 4, 15, 13, 4, 1]) == 5.5
-    assert minimum_average_view_count([1, 9, 8, 3, 10, 5]) == 5.5
-    assert minimum_average_view_count([1, 2, 3, 7, 8, 9]) == 5.0
+    # assert min_remaining_watchlist("ABFCACDB") == 2
+    # assert min_remaining_watchlist("ACBBD") == 5
 
-    assert min_remaining_watchlist("ABFCACDB") == 2
-    assert min_remaining_watchlist("ACBBD") == 5
+    # assert apply_rating_operations([1, 2, 2, 1, 1, 0]) == [1, 4, 2, 0, 0, 0]
+    # assert apply_rating_operations([0, 1]) == [1, 0]
 
-    assert apply_rating_operations([1, 2, 2, 1, 1, 0]) == [1, 4, 2, 0, 0, 0]
-    assert apply_rating_operations([0, 1]) == [1, 0]
-
-    assert make_smallest_watchlist("egcfe") == "efcfe"
-    assert make_smallest_watchlist("abcd") == "abba"
-    assert make_smallest_watchlist("seven") == "neven"
+    # assert make_smallest_watchlist("egcfe") == "efcfe"
+    # assert make_smallest_watchlist("abcd") == "abba"
+    # assert make_smallest_watchlist("seven") == "neven"
 
 
 # ADVANCED SETS ######################################################################################################
 
-# VERSION Set 1
+# VERSION Set 1 ******************************************************************************************************
 
 def blueprint_approval(blueprints):
     """
@@ -373,7 +423,33 @@ def token_value(token):
     """
     pass
 
-# VERSION Set 2
+# def test_advanced_version_1():
+    # assert blueprint_approval([3, 5, 2, 1, 4]) == [1, 2, 3, 4, 5]
+    # assert blueprint_approval([7, 4, 6, 2, 5]) == [2, 4, 5, 6, 7]
+
+    # assert build_skyscrapers([10, 5, 8, 3, 7, 2, 9]) == 4
+    # assert build_skyscrapers([7, 3, 7, 3, 5, 1, 6]) == 4
+    # assert build_skyscrapers([8, 6, 4, 7, 5, 3, 2]) == 2
+
+    # assert max_corridor_area([1, 8, 6, 2, 5, 4, 8, 3, 7]) == 49
+    # assert max_corridor_area([1, 1]) == 1
+
+    # assert min_swaps("][][" ) == 1
+    # assert min_swaps("]]][[[" ) == 2
+    # assert min_swaps("[]") == 0
+
+    # assert make_balanced_room("art(t(d)e)sign)") == "art(t(d)e)s)ign"
+    # assert make_balanced_room("d)e(s)ign") == "de(s)ign"
+    # assert make_balanced_room(")((") == ""
+
+    # assert time_to_complete_dream_designs([3, 4, 5, 2, 1, 6, 7, 3]) == [1, 1, 3, 2, 1, 1, 0, 0]
+    # assert time_to_complete_dream_designs([2, 3, 1, 4]) == [1, 2, 1, 0]
+    # assert time_to_complete_dream_designs([5, 5, 5, 5]) == [0, 0, 0, 0]
+
+    # assert next_greater_dream([1, 2, 1]) == [2, -1, 2]
+    # assert next_greater_dream([1, 2, 3, 4, 3]) == [2, 3, 4, -1, 4]
+
+# VERSION Set 2 **********************************************************************************************************************
 
 def arrange_guest_arrival_order(arrival_pattern):
     """
@@ -455,66 +531,42 @@ def validate_shelter_sequence(admitted, adopted):
     """
     pass
 
-def test_advanced_version_1():
-    assert blueprint_approval([3, 5, 2, 1, 4]) == [1, 2, 3, 4, 5]
-    assert blueprint_approval([7, 4, 6, 2, 5]) == [2, 4, 5, 6, 7]
 
-    assert build_skyscrapers([10, 5, 8, 3, 7, 2, 9]) == 4
-    assert build_skyscrapers([7, 3, 7, 3, 5, 1, 6]) == 4
-    assert build_skyscrapers([8, 6, 4, 7, 5, 3, 2]) == 2
+# def test_advanced_version_2():
+#     assert score_of_mystical_market_chains("()") == 1
+#     assert score_of_mystical_market_chains("(())") == 2
+#     assert score_of_mystical_market_chains("()()") == 2
 
-    assert max_corridor_area([1, 8, 6, 2, 5, 4, 8, 3, 7]) == 49
-    assert max_corridor_area([1, 1]) == 1
+#     orbs1 = [2, 0, 2, 1, 1, 0]
+#     arrange_magical_orbs(orbs1)
+#     assert orbs1 == [0, 0, 1, 1, 2, 2]
 
-    assert min_swaps("][][" ) == 1
-    assert min_swaps("]]][[[" ) == 2
-    assert min_swaps("[]") == 0
+#     orbs2 = [2, 0, 1]
+#     arrange_magical_orbs(orbs2)S
+#     assert orbs2 == [0, 1, 2]
 
-    assert make_balanced_room("art(t(d)e)sign)") == "art(t(d)e)s)ign"
-    assert make_balanced_room("d)e(s)ign") == "de(s)ign"
-    assert make_balanced_room(")((") == ""
+#     assert match_buyers_and_sellers([4, 7, 9], [8, 2, 5, 8]) == 3
+#     assert match_buyers_and_sellers([1, 1, 1], [10]) == 0
 
-    assert time_to_complete_dream_designs([3, 4, 5, 2, 1, 6, 7, 3]) == [1, 1, 3, 2, 1, 1, 0, 0]
-    assert time_to_complete_dream_designs([2, 3, 1, 4]) == [1, 2, 1, 0]
-    assert time_to_complete_dream_designs([5, 5, 5, 5]) == [0, 0, 0, 0]
+#     assert maximum_value("cdbcbbaaabab", 4, 5) == 19
+#     assert maximum_value("aabbaaxybbaabb", 5, 4) == 20
 
-    assert next_greater_dream([1, 2, 1]) == [2, -1, 2]
-    assert next_greater_dream([1, 2, 3, 4, 3]) == [2, 3, 4, -1, 4]
+#     # assert sorted(get_strongest_artifacts([1, 2, 3, 4, 5], 2)) == sorted([5, 1])
+#     # assert sorted(get_strongest_artifacts([1, 1, 3, 5, 5], 2)) == sorted([5, 5])
+#     # assert len(get_strongest_artifacts([6, 7, 11, 7, 6, 8], 5)) == 5
 
-def test_advanced_version_2():
-    assert score_of_mystical_market_chains("()") == 1
-    assert score_of_mystical_market_chains("(())") == 2
-    assert score_of_mystical_market_chains("()()") == 2
+#     assert num_enchanted_boats([1, 2], 3) == 1
+#     assert num_enchanted_boats([3, 2, 2, 1], 3) == 3
+#     assert num_enchanted_boats([3, 5, 3, 4], 5) == 4
 
-    orbs1 = [2, 0, 2, 1, 1, 0]
-    arrange_magical_orbs(orbs1)
-    assert orbs1 == [0, 0, 1, 1, 2, 2]
+#     assert token_value("()") == 1
+#     assert token_value("(())") == 2
+#     assert token_value("()()") == 2
 
-    orbs2 = [2, 0, 1]
-    arrange_magical_orbs(orbs2)
-    assert orbs2 == [0, 1, 2]
 
-    assert match_buyers_and_sellers([4, 7, 9], [8, 2, 5, 8]) == 3
-    assert match_buyers_and_sellers([1, 1, 1], [10]) == 0
-
-    assert maximum_value("cdbcbbaaabab", 4, 5) == 19
-    assert maximum_value("aabbaaxybbaabb", 5, 4) == 20
-
-    # assert sorted(get_strongest_artifacts([1, 2, 3, 4, 5], 2)) == sorted([5, 1])
-    # assert sorted(get_strongest_artifacts([1, 1, 3, 5, 5], 2)) == sorted([5, 5])
-    # assert len(get_strongest_artifacts([6, 7, 11, 7, 6, 8], 5)) == 5
-
-    assert num_enchanted_boats([1, 2], 3) == 1
-    assert num_enchanted_boats([3, 2, 2, 1], 3) == 3
-    assert num_enchanted_boats([3, 5, 3, 4], 5) == 4
-
-    assert token_value("()") == 1
-    assert token_value("(())") == 2
-    assert token_value("()()") == 2
-
-if __name__ == "__main__":
-    test_standard_set()
-    # test_version_2()
-    # test_advanced_version_1()
-    # test_advanced_version_2()
-    print("All tests passed!")
+# if __name__ == "__main__":
+#     # test_standard_set()
+#     # test_version_2()
+#     # test_advanced_version_1()
+#     # test_advanced_version_2()
+#     print("All tests passed!")
