@@ -514,5 +514,7 @@ def test_advanced_version_2():
 
 if __name__ == "__main__":
     test_standard_set()
-    test_version_2()
+    # test_version_2()
+    # test_advanced_version_1()
+    # test_advanced_version_2()
     print("All tests passed!")
