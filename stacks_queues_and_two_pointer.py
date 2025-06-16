@@ -125,21 +125,73 @@ def clean_post(post):
     Given a string post of lowercase and uppercase English letters, remove any pairs of adjacent
     characters where one is the lowercase version and the other is the uppercase version of the same letter.
     """
+    found_letters = set()
+
     pass
+
+# print("\nTESTING clean_post()...")
+# assert clean_post("poOost") == "post"
+# assert clean_post("abBAcC") == ""
+# assert clean_post("s") == "s"
 
 def edit_post(post):
     """
     Reverse the order of characters in each word within the post while preserving whitespace
     and initial word order, using a queue.
     """
-    pass
+    wordQueue = deque()
+    output = ""
+
+    for char in post:
+        if char != ' ':
+            wordQueue.append(char)
+        else:
+            while wordQueue:
+                output += wordQueue.pop()
+            output += " "
+
+
+    # Popping out the last word in the queue
+    while wordQueue:
+        output += wordQueue.pop()
+
+    return output
+
+print("\nTESTING edit_post()...")
+assert edit_post("Boost your engagement with these tips") == "tsooB ruoy tnemegagne htiw eseht spit"
+assert edit_post("Check out my latest vlog") == "kcehC tuo ym tsetal golv"
+
 
 def post_compare(draft1, draft2):
     """
     Given two draft strings, return true if they are equal when typed into text editors.
     '#' means a backspace character.
     """
-    pass
+    word1 = []
+    word2 = []
+
+    for char in draft1:
+        if char != "#":
+            word1.append(char)
+        else:
+            word1.pop()
+
+    for char in draft2:
+        if char != "#":
+            word2.append(char)
+        else:
+            word2.pop()
+
+    if word1 == word2:
+        return True
+    else:
+        return False
+
+
+print("\nTESTING post_compare()...")
+assert post_compare("ab#c", "ad#c") == True
+assert post_compare("ab##", "c#d#") == True
+assert post_compare("a#c", "b") == False
 
 def manage_stage_changes(changes):
     """
@@ -193,18 +245,6 @@ def sort_performances_by_type(performances):
     """
     pass
 
-# def test_standard_set():S
-    # assert clean_post("poOost") == "post"
-    # assert clean_post("abBAcC") == ""
-    # assert clean_post("s") == "s"
-
-    # assert edit_post("Boost your engagement with these tips") == "tsooB ruoy tnemegegna htiw esehT spit"
-    # assert edit_post("Check out my latest vlog") == "kcehC tuo ym tseval golv"
-
-    # assert post_compare("ab#c", "ad#c") == True
-    # assert post_compare("ab##", "c#d#") == True
-    # assert post_compare("a#c", "b") == False
-
 
 # VERSION Set 2 *********************************************************************************************************************
 def time_required_to_stream(movies, k):
@@ -212,9 +252,24 @@ def time_required_to_stream(movies, k):
     Return the time taken for the user at position k to finish streaming all their movies.
     Each user takes 1 second per movie and goes to the back of the queue if they have movies left.
     """
-    pass
-# assert time_required_to_stream([2, 3, 2], 2) == 6
-# assert time_required_to_stream([5, 1, 1, 1], 0) == 8
+    usersDone = []
+    timeTaken = 0
+
+    while movies[k] != 0:
+        for i, user in enumerate(movies):
+            if user != 0:
+                movies[i] -= 1
+                timeTaken += 1
+            elif i not in usersDone:
+                usersDone.append(i)
+        print(movies)
+
+    return timeTaken
+
+print("\nTESTING time_required_to_stream()...")
+assert time_required_to_stream([2, 3, 2], 2) == 6
+assert time_required_to_stream([5, 1, 1, 1], 0) == 8
+
 
 def reverse_watchlist(watchlist):
     """
@@ -222,6 +277,23 @@ def reverse_watchlist(watchlist):
     Do not use slicing.
     """
     pass
+
+    left = 0
+    right = len(watchlist) - 1
+
+    while left < right:
+        tmp = watchlist[left]
+        watchlist[left] = watchlist[right]
+        watchlist[right] = tmp
+        left += 1
+        right -= 1
+
+    return watchlist
+
+print("\nTESTIING reverse_watchlist()...")
+wl = ["Breaking Bad", "Stranger Things", "The Crown", "The Witcher"]
+assert reverse_watchlist(wl) == ["The Witcher", "The Crown", "Stranger Things", "Breaking Bad"]
+
 
 def remove_duplicate_shows(schedule):
     """
@@ -307,10 +379,6 @@ def is_prefix_of_signal(transmission, searchSignal):
     pass
 
 # def test_version_2():
-
-    # wl = ["Breaking Bad", "Stranger Things", "The Crown", "The Witcher"]
-    # assert reverse_watchlist(wl) == ["The Witcher", "The Crown", "Stranger Things", "Breaking Bad"]
-
     # assert remove_duplicate_shows("abbaca") == "ca"
     # assert remove_duplicate_shows("azxxzy") == "ay"
 
