@@ -431,7 +431,22 @@ def build_skyscrapers(floors):
     Build skyscrapers from floors with the rule that each floor must be placed on top of a floor
     with equal or greater height. Start a new skyscraper when this is not possible. Return the number of skyscrapers.
     """
-    pass
+    
+    i = len(floors) - 1
+    skyscrapers = 0
+
+    while i >= 0:
+        if floors[i] > floors[i - 1]:
+            skyscrapers += 1
+        # print(i, skyscrapers)
+        i -= 1
+
+    return skyscrapers
+
+print("\nTESTING build_skyscraper()...")
+assert build_skyscrapers([10, 5, 8, 3, 7, 2, 9]) == 4
+assert build_skyscrapers([7, 3, 7, 3, 5, 1, 6]) == 4
+assert build_skyscrapers([8, 6, 4, 7, 5, 3, 2]) == 2
 
 def max_corridor_area(segments):
     """
@@ -516,10 +531,6 @@ def token_value(token):
     pass
 
 # def test_advanced_version_1():
-    # assert build_skyscrapers([10, 5, 8, 3, 7, 2, 9]) == 4
-    # assert build_skyscrapers([7, 3, 7, 3, 5, 1, 6]) == 4
-    # assert build_skyscrapers([8, 6, 4, 7, 5, 3, 2]) == 2
-
     # assert max_corridor_area([1, 8, 6, 2, 5, 4, 8, 3, 7]) == 49
     # assert max_corridor_area([1, 1]) == 1
 
