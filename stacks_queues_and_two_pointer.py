@@ -262,7 +262,7 @@ def time_required_to_stream(movies, k):
                 timeTaken += 1
             elif i not in usersDone:
                 usersDone.append(i)
-        print(movies)
+        # print(movies)
 
     return timeTaken
 
@@ -290,7 +290,7 @@ def reverse_watchlist(watchlist):
 
     return watchlist
 
-print("\nTESTIING reverse_watchlist()...")
+print("\nTESTING reverse_watchlist()...")
 wl = ["Breaking Bad", "Stranger Things", "The Crown", "The Witcher"]
 assert reverse_watchlist(wl) == ["The Witcher", "The Crown", "Stranger Things", "Breaking Bad"]
 
@@ -406,7 +406,25 @@ def blueprint_approval(blueprints):
     Simulate the blueprint approval process using a queue. Blueprints with lower complexity
     are approved before higher ones. Return the order in which blueprints are approved.
     """
-    pass
+
+    output = deque()
+    allPrints = len(blueprints)
+    max = 0
+
+    while len(output) != allPrints:
+        for plan in blueprints:
+            if plan > max:
+                max = plan
+        output.appendleft(max)
+        blueprints.remove(max)
+        max = 0
+        # print(output)
+
+    return list(output)
+
+print("\nTESTING blueprint_approval()...")
+assert blueprint_approval([3, 5, 2, 1, 4]) == [1, 2, 3, 4, 5]
+assert blueprint_approval([7, 4, 6, 2, 5]) == [2, 4, 5, 6, 7]
 
 def build_skyscrapers(floors):
     """
@@ -498,9 +516,6 @@ def token_value(token):
     pass
 
 # def test_advanced_version_1():
-    # assert blueprint_approval([3, 5, 2, 1, 4]) == [1, 2, 3, 4, 5]
-    # assert blueprint_approval([7, 4, 6, 2, 5]) == [2, 4, 5, 6, 7]
-
     # assert build_skyscrapers([10, 5, 8, 3, 7, 2, 9]) == 4
     # assert build_skyscrapers([7, 3, 7, 3, 5, 1, 6]) == 4
     # assert build_skyscrapers([8, 6, 4, 7, 5, 3, 2]) == 2
