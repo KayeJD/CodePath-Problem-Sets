@@ -399,7 +399,7 @@ def is_prefix_of_signal(transmission, searchSignal):
 
 # ADVANCED SETS ######################################################################################################
 
-# VERSION Set 1 ******************************************************************************************************
+# ADVANCED VERSION Set 1 ******************************************************************************************************
 
 def blueprint_approval(blueprints):
     """
@@ -448,12 +448,17 @@ assert build_skyscrapers([10, 5, 8, 3, 7, 2, 9]) == 4
 assert build_skyscrapers([7, 3, 7, 3, 5, 1, 6]) == 4
 assert build_skyscrapers([8, 6, 4, 7, 5, 3, 2]) == 2
 
+
 def max_corridor_area(segments):
     """
     Given corridor segment widths, find two segments such that the minimum width between them times
     the distance gives the maximum possible area.
     """
     pass
+
+# print("\nTESTING max_corridor_area()...")
+# assert max_corridor_area([1, 8, 6, 2, 5, 4, 8, 3, 7]) == 49
+# assert max_corridor_area([1, 1]) == 1
 
 def min_swaps(s):
     """
@@ -462,12 +467,22 @@ def min_swaps(s):
     """
     pass
 
+# print('\n TESTING min_swaps()...')
+# assert min_swaps("][][" ) == 1
+# assert min_swaps("]]][[[" ) == 2
+# assert min_swaps("[]") == 0
+
 def make_balanced_room(s):
     """
     Remove the minimum number of parentheses to make a room layout string balanced.
     Return any valid layout.
     """
     pass
+
+# print("\nTESTING make_balanced_room()...")
+# assert make_balanced_room("art(t(d)e)sign)") == "art(t(d)e)s)ign"
+# assert make_balanced_room("d)e(s)ign") == "de(s)ign"
+# assert make_balanced_room(")((") == ""
 
 def time_to_complete_dream_designs(design_times):
     """
@@ -476,6 +491,11 @@ def time_to_complete_dream_designs(design_times):
     """
     pass
 
+# print("\nTESTING time_to_complete_dream_design()...")
+# assert time_to_complete_dream_designs([3, 4, 5, 2, 1, 6, 7, 3]) == [1, 1, 3, 2, 1, 1, 0, 0]
+# assert time_to_complete_dream_designs([2, 3, 1, 4]) == [1, 2, 1, 0]
+# assert time_to_complete_dream_designs([5, 5, 5, 5]) == [0, 0, 0, 0]
+
 def next_greater_dream(dreams):
     """
     Given a circular array, return the next greater element for each dream.
@@ -483,12 +503,22 @@ def next_greater_dream(dreams):
     """
     pass
 
+# print("\nTESTING next_greater_dream()...")
+# assert next_greater_dream([1, 2, 1]) == [2, -1, 2]
+# assert next_greater_dream([1, 2, 3, 4, 3]) == [2, 3, 4, -1, 4]
+
 def score_of_mystical_market_chains(chain):
     """
     Given a balanced string with '()', return the score based on mystical power rules.
     () -> 1, (A) -> 2 * A, AB -> A + B
     """
     pass
+
+# print("\nTESTING score_of_mystical_market_chains()...")
+# assert score_of_mystical_market_chains("()") == 1
+# assert score_of_mystical_market_chains("(())") == 2
+# assert score_of_mystical_market_chains("()()") == 2
+
 
 def arrange_magical_orbs(orbs):
     """
@@ -503,12 +533,42 @@ def match_buyers_and_sellers(buyers, sellers):
     """
     pass
 
-def maximum_value(items, x, y):
-    """
-    Maximize value gained from removing 'AB' and 'BA' pairs from the items string.
-    Gain x for 'AB' and y for 'BA'.
-    """
-    pass
+# NOTE: This function was just iterated through 
+# def maximum_value(items, x, y):
+#     """
+#     Maximize value gained from removing 'AB' and 'BA' pairs from the items string.
+#     Gain x for 'AB' and y for 'BA'.
+#     """
+#     # 1. create map to count findings for future multiplication
+#     patterns = {"ab": 0,
+#                 "ba": 0}
+    
+#     pairs = []
+    
+#     # 2. Use a stack to find the next found pattern
+#     # iterating through the string
+#     for char in items:
+#         # append found 'a' or 'b' into a stack
+#         if char in ('a', 'b'):
+#             pairs.append(char)
+        
+#         # find any pattern pairs
+#         if len(pairs) >= 2:
+#             if pairs[-1] == 'b' and pairs[-2] == 'a':
+#                 patterns["ab"] += 1
+#                 pairs.pop()
+#                 pairs.pop()
+#             elif pairs[-1] == 'a' and pairs[-2] == 'b':
+#                 patterns["ba"] += 1
+#                 pairs.pop()
+#                 pairs.pop()
+
+#     print(patterns)
+
+
+# print("\nTESTING maximum_value()...")
+# assert maximum_value("cdbcbbaaabab", 4, 5) == 20
+# assert maximum_value("aabbaaxybbaabb", 5, 4) == 20
 
 # def get_strongest_artifacts(artifacts, k):
 #     """
@@ -530,26 +590,7 @@ def token_value(token):
     """
     pass
 
-# def test_advanced_version_1():
-    # assert max_corridor_area([1, 8, 6, 2, 5, 4, 8, 3, 7]) == 49
-    # assert max_corridor_area([1, 1]) == 1
-
-    # assert min_swaps("][][" ) == 1
-    # assert min_swaps("]]][[[" ) == 2
-    # assert min_swaps("[]") == 0
-
-    # assert make_balanced_room("art(t(d)e)sign)") == "art(t(d)e)s)ign"
-    # assert make_balanced_room("d)e(s)ign") == "de(s)ign"
-    # assert make_balanced_room(")((") == ""
-
-    # assert time_to_complete_dream_designs([3, 4, 5, 2, 1, 6, 7, 3]) == [1, 1, 3, 2, 1, 1, 0, 0]
-    # assert time_to_complete_dream_designs([2, 3, 1, 4]) == [1, 2, 1, 0]
-    # assert time_to_complete_dream_designs([5, 5, 5, 5]) == [0, 0, 0, 0]
-
-    # assert next_greater_dream([1, 2, 1]) == [2, -1, 2]
-    # assert next_greater_dream([1, 2, 3, 4, 3]) == [2, 3, 4, -1, 4]
-
-# VERSION Set 2 **********************************************************************************************************************
+# ADVANCED VERSION Set 2 **********************************************************************************************************************
 
 def arrange_guest_arrival_order(arrival_pattern):
     """
@@ -633,10 +674,6 @@ def validate_shelter_sequence(admitted, adopted):
 
 
 # def test_advanced_version_2():
-#     assert score_of_mystical_market_chains("()") == 1
-#     assert score_of_mystical_market_chains("(())") == 2
-#     assert score_of_mystical_market_chains("()()") == 2
-
 #     orbs1 = [2, 0, 2, 1, 1, 0]
 #     arrange_magical_orbs(orbs1)
 #     assert orbs1 == [0, 0, 1, 1, 2, 2]
@@ -647,9 +684,6 @@ def validate_shelter_sequence(admitted, adopted):
 
 #     assert match_buyers_and_sellers([4, 7, 9], [8, 2, 5, 8]) == 3
 #     assert match_buyers_and_sellers([1, 1, 1], [10]) == 0
-
-#     assert maximum_value("cdbcbbaaabab", 4, 5) == 19
-#     assert maximum_value("aabbaaxybbaabb", 5, 4) == 20
 
 #     # assert sorted(get_strongest_artifacts([1, 2, 3, 4, 5], 2)) == sorted([5, 1])
 #     # assert sorted(get_strongest_artifacts([1, 1, 3, 5, 5], 2)) == sorted([5, 5])
