@@ -171,12 +171,22 @@ def of_personality_type(townies, personality_type):
 '''
 
 def of_personality_type(townies, personality_type):
-    pass
+    # Create a list to hold the names of villagers with the specified personality type
+    matching_villagers = []
+    
+    # Iterate through the list of Villager instances
+    for villager in townies:
+        # Check if the villager's personality matches the specified personality type
+        if villager.personality == personality_type:
+            # Add the villager's name to the list
+            matching_villagers.append(villager.name)
+    
+    return matching_villagers
 
 # Check
-isabelle = Villager("Isabelle", "Dog", "Normal", "what's up?")
-bob = Villager("Bob", "Cat", "Lazy", "pthhhpth")
-stitches = Villager("Stitches", "Cub", "Lazy", "stuffin'")
+isabelle = Villager("Isabelle", "Dog", "what's up?", "Normal")
+bob = Villager("Bob", "Cat", "pthhhpth","Lazy" )
+stitches = Villager("Stitches", "Cub", "stuffin'","Lazy")
 
 print(of_personality_type([isabelle, bob, stitches], "Lazy"))
 print(of_personality_type([isabelle, bob, stitches], "Cranky"))
