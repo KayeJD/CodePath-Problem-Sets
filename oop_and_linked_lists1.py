@@ -420,10 +420,29 @@ class Node:
 
 mouse = Node("Jerry")
 
-cat = Node("Tom", mouse)
+cat = Node("Tom")
+cat.next = mouse
 
 print(cat.value)
 print(cat.next)
 print(cat.next.value)
 print(mouse.value)
 print(mouse.next)
+
+# Q10 ================================================================================================
+'''
+In a linked list, pointers can be redirected at any place in the list.
+
+Using the linked list from Problem 9, create a new Node dog with value "Spike" and point it to the cat node so that the full list now looks like dog -> cat -> mouse.
+'''
+
+dog = Node("Spike")
+dog.next = cat
+
+# test 
+print(dog.value)
+print(dog.next)
+print(dog.next.value)
+print(cat.next)
+print(cat.next.value)
+# print(mouse.next.value)
