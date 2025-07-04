@@ -446,3 +446,4 @@ print(dog.next.value)
 print(cat.next)
 print(cat.next.value)
 # print(mouse.next.value)
+
