@@ -1,48 +1,41 @@
-def calculate_expenses(expenses):
-    # print('yip')
+class Node:
+    def __init__(self, value, next=None):
+        self.value = value
+        self.next = next
 
-    # Initialize dict with the expenses
-    dict_expense = {}
-    most_expensive = 0
-    output = ""
+def print_linked_list(head):
+    current = head
+    while current:
+        print(current.value, end=" -> " if current.next else "\n")
+        current = current.next
 
-    # access each tuple
-    # access each category
-        # if category is not in dict
-            # add the category to the dict
-            # add the expense to dict[category]
+def partition(suspect_ratings, threshold):
+	# Temp head
+    # print(suspect_ratings)
+    partition = suspect_ratings
+    # print(partition)
+    part_end = suspect_ratings
 
-        # compare the current category[expense] to most_expensive
-            # if category[expense] > most_expensive
+    current = suspect_ratings.next
+
+    while current:
+        if current.value > threshold:
+            # make a new node tmpNOde
+            tmpNode = Node(current.value)
+            tmpNode.next = partition
+            # need to move partition pointer
+            partition = tmpNode
+        elif current.value <= threshold:
+            # add it tot eh end of your partition ll
+            tmpNode = Node(current.value)
+            part_end.next = tmpNode
+            part_end = tmpNode
+
+        current = current.next
     
-    for expense in expenses:
-        # print(expense[0], expense[1])
-        if expense[0] not in dict_expense:
-            dict_expense[expense[0]] = 0
+    return partition
 
-        dict_expense[expense[0]] += expense[1]
-        
-        if dict_expense[expense[0]] > most_expensive:
-            output = expense[0]
+suspect_ratings = Node(1, Node(4, Node(3, Node(2, Node(5, Node(2))))))
+print(suspect_ratings.value)
 
-    return (expenses, output)
-
-
-
-expenses = [("Food", 12.5), ("Transport", 15.0), ("Accommodation", 50.0),
-            ("Food", 7.5), ("Transport", 10.0), ("Food", 10.0)]
-print(calculate_expenses(expenses))
-
-expenses_2 = [("Entertainment", 20.0), ("Food", 15.0), ("Transport", 10.0),
-              ("Entertainment", 5.0), ("Food", 25.0), ("Accommodation", 40.0)]
-print(calculate_expenses(expenses_2))
-
-expenses_3 = [("Utilities", 100.0), ("Food", 50.0), ("Transport", 75.0),
-              ("Utilities", 50.0), ("Food", 25.0)]
-print(calculate_expenses(expenses_3))
-
-"""
-({'Food': 30.0, 'Transport': 25.0, 'Accommodation': 50.0}, 'Accommodation')
-({'Entertainment': 25.0, 'Food': 40.0, 'Transport': 10.0, 'Accommodation': 40.0}, 'Food')
-({'Utilities': 150.0, 'Food': 75.0, 'Transport': 75.0}, 'Utilities')
-"""
+print_linked_list(partition(suspect_ratings, 3))

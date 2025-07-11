@@ -67,3 +67,4 @@ Explanation: Keep the first (m = 2) nodes starting from the head of the linked L
 Delete the next (n = 3) nodes (3 -> 4 -> 5) show in red nodes.
 Continue with the same procedure until reaching the tail of the Linked List.
 '''
+
