@@ -1,4 +1,4 @@
-# Standard Set 1, Session 1
+# Advanced Set 1, Session 1
 # Q4 ================================================================================================
 ''' Non-decreasing array
 Given an array nums with n integers, write a function non_decreasing() that checks if nums could become non-decreasing by modifying at most one element.
@@ -99,3 +99,89 @@ vegetable_patch = [
 ]
 
 print(harvest(vegetable_patch))
+
+# Q7 
+''' Problem 7: Eeyore's House
+Eeyore has collected two piles of sticks to rebuild his house and needs to choose pairs of sticks whose lengths are the right proportion. Write a function good_pairs() that accepts two integer arrays pile1 and pile2 where each integer represents the length of a stick. The function also accepts a positive integer k. The function should return the number of good pairs.
+
+A pair (i, j) is called good if pile1[i] is divisible by pile2[j] * k. Assume 0 <= i <= len(pile1) - 1 and 0 <= j <= len(pile2) - 1.
+
+Example Output:
+5
+2
+'''
+
+def good_pairs(pile1, pile2, k):
+	pass
+
+
+pile1 = [1, 3, 4]
+pile2 = [1, 3, 4]
+k = 1
+good_pairs(pile1, pile2, k)
+
+pile1 = [1, 2, 4, 12]
+pile2 = [2, 4]
+k = 3
+good_pairs(pile1, pile2, k)
+
+# Q8
+''' Problem 8: Defuse the Bomb
+Batman has a bomb to defuse, and his time is running out! His butler, Alfred, is on the phone providing him with a circular array code of length n and key k.
+
+To decrypt the code, Batman must replace every number. All the numbers are replaced simultaneously.
+
+If k > 0, replace the ith number with the sum of the next k numbers.
+If k < 0, replace the ith number with the sum of the previous k numbers.
+If k == 0, replace the ith number with 0.
+As code is circular, the next element of code[n-1] is code[0], and the previous element of code[0] is code[n-1].
+
+Given the circular array code and an integer key k, write a function decrypt() that returns the decrypted code to defuse the bomb!
+
+Example Output:
+
+[12, 10, 16, 13]
+[0, 0, 0, 0]
+[12, 5, 6, 13]
+'''
+
+def defuse(code, k):
+	# extend the code array twice > just duplicate the values
+
+    # for loop: access the first n elements
+        # if: to check k to perform teh proper changes
+
+    # return the first n valus of code
+
+    n = len(code)
+
+    code = code * 2
+
+    for i in range(n):
+        if k > 0:
+            sum = 0
+            for value in code[i + 1:i + k + 1]:
+                sum += value
+            code[i] = sum
+        if k < 0:
+            sum = 0
+            for value in code[i + n + k:i + n]:
+                sum += value
+            code[i] = sum
+        if k == 0:
+            code[i] = 0
+
+    return code[:n]
+
+
+code = [5, 7, 1, 4]
+k = 3
+print(defuse(code, k))
+
+code = [1, 2, 3, 4]
+k = 0
+print(defuse(code, k))
+
+code = [2, 4, 9, 3]
+k = -2
+print(defuse(code, k))
