@@ -67,3 +67,35 @@ clues = [-1]
 lower = -1
 upper = -1
 find_missing_clues(clues, lower, upper)
+
+
+# Q6
+''' Problem 6: Vegetable Harvest
+Rabbit is collecting carrots from his garden to make a feast for Pooh and friends. Write a function harvest() that accepts a 2D n x m matrix vegetable_patch and returns the number of of carrots that are ready to harvest in the vegetable patch. A carrot is ready to harvest if vegetable_patch[i][j] has value 'c'.
+
+Assume n = len(vegetable_patch) and m = len(vegetable_patch[0]). 0 <= i < n and 0 <= j < m.
+
+Example Output: 6
+'''
+
+def harvest(vegetable_patch):
+	# nested for loop to check each char value
+    # return count of char == 'c'
+
+    count = 0
+
+    for row in vegetable_patch:
+        for char in row:
+            if char == 'c':
+                count += 1
+
+    return count
+
+vegetable_patch = [
+	['x', 'c', 'x'],
+	['x', 'x', 'x'],
+	['x', 'c', 'c'],
+	['c', 'c', 'c']
+]
+
+print(harvest(vegetable_patch))
