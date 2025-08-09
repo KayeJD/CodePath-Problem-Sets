@@ -1,28 +1,39 @@
-# STANDARD SET #####################################################################################################
-def linear_search(lst, target):
-    """
-    Perform a linear search for the target in the list.
-    
-    :param lst: List of elements to search
-    :param target: Element to find
-    :return: Index of target if found, otherwise -1
-    """
+# Standard Set 1, Session 1
+# Q4 ================================================================================================
+''' Non-decreasing array
+Given an array nums with n integers, write a function non_decreasing() that checks if nums could become non-decreasing by modifying at most one element.
 
-    # for index, element in enumerate(lst):
-    #     if element == target:
-    #         return index
+We define an array is non-decreasing if nums[i] <= nums[i + 1] holds for every i (0-based) such that (0 <= i <= n - 2).
 
-    return -1
-    
-    
-def test_linear_search():
-    assert linear_search(['haycorn', 'haycorn', 'haycorn', 'hunny', 'haycorn'], 'hunny') == 3
-    assert linear_search(['apple', 'banana', 'cherry'], 'banana') == 1
-    assert linear_search([1, 2, 3, 4, 5], 6) == -1
-    assert linear_search([], 1) == -1
-    assert linear_search([10], 10) == 0
-    assert linear_search([10], 20) == -1
+Example Output:
 
-if __name__ == "__main__":
-    test_linear_search()
-    print("All tests passed!")
+True
+False
+'''
+
+def non_decreasing(nums):
+    # keep track of how many times nums needs to be modified in order to be increasing
+    # for loop: go through all array elements
+        # if the number is smaller than the previous number, increase modification
+
+    # if mod <= 1: return True else false
+    
+    modification = 0
+    prev = nums[0]
+
+    for num in nums:
+        if num < prev:
+            modification += 1
+        prev = num
+
+    if modification <= 1:
+        return True
+    
+    return False
+
+# Expecting
+nums = [4, 2, 3]
+print(non_decreasing(nums))
+
+nums = [4, 2, 1]
+print(non_decreasing(nums))
