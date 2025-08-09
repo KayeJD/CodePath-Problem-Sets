@@ -70,11 +70,6 @@ print(total_treasures(treasure_map2))
 # Q2
 ''' Problem 2: Pirate Message Check
 Taken captive, Captain Anne Bonny has been smuggled a secret message from her crew. She will know she can trust the message if it contains all of the letters in the alphabet. Given a string message containing only lowercase English letters and whitespace, write a function can_trust_message() that returns True if the message contains every letter of the English alphabet at least once, and False otherwise.
-
-Example Output:
-
-True
-False
 '''
 
 def can_trust_message(message):
@@ -107,3 +102,57 @@ message2 = "trust me"
 
 print(can_trust_message(message1))
 print(can_trust_message(message2))
+
+# Example Output:
+
+# True
+# False
+
+# Q3
+''' Problem 3: Find All Duplicate Treasure Chests in an Array
+Captain Blackbeard has an integer array chests of length n where all the integers in chests are in the range [1, n] and each integer appears once or twice. Return an array of all the integers that appear twice, representing the treasure chests that have duplicates.
+'''
+
+def find_duplicate_chests(chests):
+    # create dup dict
+    # creat ans list
+
+    # for loop: iterate thru all chests
+        # if chest not in dup: dup[chest] = 1
+        # else: dup[chest] += 1
+
+    # for loop: chest in dup.keys()
+        # if dup[chest] >= 2:
+            # append chest to ans 
+
+    # return ans
+
+    dup = {}
+    ans = []
+
+    for chest in chests:
+        if chest not in dup:
+            dup[chest] = 1
+        else:
+            dup[chest] += 1
+
+    for chest in dup.keys():
+        if dup[chest] >= 2:
+            ans.append(chest)
+    
+    return ans
+
+
+chests1 = [4, 3, 2, 7, 8, 2, 3, 1]
+chests2 = [1, 1, 2]
+chests3 = [1]
+
+print(find_duplicate_chests(chests1))
+print(find_duplicate_chests(chests2))
+print(find_duplicate_chests(chests3))
+
+# Example Output:
+
+# [2, 3]
+# [1]
+# []
